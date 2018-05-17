@@ -76,12 +76,29 @@ You must add the next lines as the first two lines of the `<head>` tag:
 <html amp lang="en">
 ```
 
-> NOTE — Although specifying the ⚡ is the recommended approach, it's also possible to use the amp attribute in place of the ⚡ attribute
+> NOTE — Although specifying the ⚡ is the recommended approach, it's also possible to use the amp attribute in place of the ⚡ attribute.
 
 #### Replace external stylesheets
 
 Not only is inline styling required but there is a file size limit of 50 kilobytes for all styling information. All styling information must be inside a `<style amp-custom></style>` tag.
 
 > NOTE - You should use CSS preprocessors such as SASS to minify your CSS before inlining the CSS in your AMP pages.
-
+> 
 > IMPORTANT — You can only have one style tag in your entire AMP document. If you have several external stylesheets referenced by your AMP pages, you will need to collate these stylesheets into a single set of rules. To learn what CSS rules are valid in AMP, read Supported CSS.
+
+#### Exclude third-party JavaScript
+
+While stylesheets can be reworked relatively easily with AMP by inlining the CSS, the same is not true for JavaScript.
+
+> The tag 'script' is disallowed except in specific forms.
+
+In general, scripts in AMP are only allowed if they follow two major requirements:
+
+1. All JavaScript must be asynchronous (i.e., include the async attribute in the script tag).
+2. The JavaScript is for the AMP library and for any AMP components on the page.
+
+This effectively rules out the use of all user-generated/third-party JavaScript in AMP except as noted below.
+
+> NOTE — The only exceptions to the restriction on user-generated/third-party scripts are:
+>  1. Script that adds metadata to the page or that configures AMP components. These will have the type attribute `application/ld+json` or `application/json`.
+> 2. Script included in iframes. Including JavaScript in an iframe should be considered a measure of last resort. Wherever possible, JavaScript functionality should be replaced by using [AMP components](https://www.ampproject.org/docs/reference/components).
