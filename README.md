@@ -115,5 +115,32 @@ The `<style amp-boilerplate>` tag initially hides the content of the body until 
 
 The `<noscript>` tag reverts this logic if JavaScropt is disabled in the browser providing a basic **graceful degradation** for this.
 
+#### Replace media tags
+
+AMP doesn't support the default HTML counterparts for desplaying media. Therefore you should keep in mind the following:
+
+- Replace `<audio>` with `<amp-audio>`.
+- Replace `<img>` with `<amp-img>`.
+- Replace `<video>` with `<amp-video>`.
+- There are a bunch of [other supported media tags](https://www.ampproject.org/docs/reference/components#media).
+
+However, this tags aren't direct substitutes of the traditional HTML tags (it wouldn't make sense if they were 😝). AMP introduces an [AMP HTML Layout System](https://www.ampproject.org/docs/design/amp-html-layout).
+
+#### Layout system
+
+The main goal of the layout system is to ensure that AMP elements can express their layout so that the runtime is able to infer sizing of elements before any remote resources, such as JavaScript and data calls, have been completed. This is important since this significantly reduces rendering and scrolling jank.
+
+With this in mind, the **AMP Layout System** is designed to support few but flexible layouts that provide good performance guarantees. This system relies on a set of attributes such as `layout`, `width`, `height`, `sizes` and `heights` to express the element's layout and sizing needs.
+
+One of the most important concepts in AMP’s design is its focus on reducing the amount of DOM reflow required to render its web pages.
+
+![a comparison between how content is normally laid out and AMP's approach][comparison]
+*A comparison between how content is normally laid out and AMP's approach*
+
+> NOTE - Please refer to the [AMP Layout System docs](https://www.ampproject.org/docs/design/amp-html-layout) to learn more about it's behavior.
 
 
+
+
+
+[comparison]: /rendering-comparison.png "a comparison between how content is normally laid out and AMP's approach"
