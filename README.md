@@ -102,3 +102,18 @@ This effectively rules out the use of all user-generated/third-party JavaScript 
 > NOTE — The only exceptions to the restriction on user-generated/third-party scripts are:
 >  1. Script that adds metadata to the page or that configures AMP components. These will have the type attribute `application/ld+json` or `application/json`.
 > 2. Script included in iframes. Including JavaScript in an iframe should be considered a measure of last resort. Wherever possible, JavaScript functionality should be replaced by using [AMP components](https://www.ampproject.org/docs/reference/components).
+
+#### Include AMP CSS boilerplate
+
+Every AMP document requires the following AMP boilerplate code at the bottom of the `<head>` tag:
+
+```html
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+```
+
+The `<style amp-boilerplate>` tag initially hides the content of the body until the AMP JavaScript library is loaded, then the content is rendered. AMP does this to prevent unstyled content from rendering, also known as Flash Of Unstyled Content (FOUC). 
+
+The `<noscript>` tag reverts this logic if JavaScropt is disabled in the browser providing a basic **graceful degradation** for this.
+
+
+
